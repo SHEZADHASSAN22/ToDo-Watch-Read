@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">  
+    <title><%= title %></title>  
+    <style>
+        body {
+            background-color: rgb(196, 196, 196);
+            margin: 0;
+            font-family: 'VT323';
+        }
+        
+        header a {
+            text-decoration: none;
+        }
+
+        .nav-bar li {
+            list-style-type: none;
+            display: inline-block;
+            margin: 0 40px;
+            padding: 10px;
+            font-size: 30px;
+        }
+
+        nav a:hover {
+            color: white;
+            font-size: larger;
+        }
+
+        .nav-bar ul {
+            border: 2px solid black;
+            text-align: center;
+            margin: 0;
+            background-color: rgb(235, 76, 76);
+        }
+
+        .video {
+            text-align: center;
+            margin: 0 10%;
+            padding: 20px;
+        }
+
+        .vidContainer {
+            display: inline-block;
+            text-align: left;
+            background-color:rgb(196, 196, 196);
+        }
+
+        h1 {
+            text-align: center;
+            margin: 10px;
+        }
+
+        iframe {
+            width: 187px;
+            height: 105px;;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <h1>Videos Page</h1>
+
+    <section class="video">
+        <form class="vidInput" action="/videos" method="POST">
+            <label for="vidTitleID">Enter a video title: </label>
+            <input type="text" class="vidTitleInput" id="vidTitleID" name="vidTitle">
+
+            <label for="vidURLID"> Enter video Embed: </label>
+            <input type="text" class="vidURLInput" id="vidURLID" name="vidEmbed">
+            <button class="vidButton" type="submit">O</button>
+        </form>
+
+        <ul class="vidList">
+            <% vids.forEach(vid => { %>
+                <li class="vidContainer">
+                    <header class="vidHeader"><%= vid.videoTitle %></header>
+                    <%- vid.videoEmbed %>
+  
+                    <a href="/delete/video/<%= vid._id %>">Del</a>
+                </li>  
+            <%}) %>
+        </ul>
+    </section>
+</body>
+</html>

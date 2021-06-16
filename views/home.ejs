@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">  
+    <title><%= title %></title>  
+    <style>
+        body {
+            background-color: rgb(196, 196, 196);
+            margin: 0;
+            font-family: 'VT323';
+        }
+
+        header a {
+            text-decoration: none;
+        }
+
+        .nav-bar li {
+            list-style-type: none;
+            display: inline-block;
+            margin: 0 40px;
+            padding: 10px;
+            font-size: 30px;
+        }
+
+        nav a:hover {
+            color: white;
+            font-size: larger;
+        }
+
+        .nav-bar ul {
+            border: 2px solid black;
+            text-align: center;
+            margin: 0;
+            background-color: rgb(235, 76, 76);
+        }
+
+        .main-area {
+            border: 2px solid black;
+            padding: 10px;
+            border-radius: 50px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            align-items: start;
+            grid-column-gap: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 10px;
+        }
+
+        .main-area {
+            margin: 0 30px;
+        }
+
+        .todo-section {
+            grid-column: 1/3;
+        }
+
+        .task {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .question {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .question-section {
+            grid-column: 3/5;
+        }
+
+        .todo-input {
+            text-align: center;
+        }
+
+        .question-input {
+            text-align: center;
+        }
+        
+        .deleteButton {
+            padding: 3px 10px;
+            background-color: rgb(241, 97, 97);
+            text-decoration: none;
+            
+        }
+
+        .deleteButton:hover {
+            background-color: blue;
+            color: red;
+            font-size: larger;
+        }
+
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <h1>Home</h1>
+
+    <div class="main-area">
+        <section class="todo-section">
+            <div class="todo-input">
+                <h2>Todos</h2>
+                <form class="todoForm" action="/todos" method="POST">
+                    <input type="text" name="task">
+                    <button>O</button>
+                </form>
+            </div>
+        
+            <div class="todo-tasks">
+                <ul class="todo-list">
+                    <% todos.forEach(todo => { %>
+                        <li>
+                            <p class="task"><%= todo.task %></p>
+                            <a href="/delete/todo/<%= todo.id %>" class="deleteButton">del</a>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </section>
+
+        <section class="question-section">
+            <div class="question-input">
+                <h2>Questions</h2>
+                <form class="questionForm" action="/questions" method="POST">
+                    <input type="text" name="question">
+                    <button>O</button>
+                </form>
+            </div>
+
+            <div class="question-questions">
+                <ul class="question-list">
+                    <% questions.forEach(question => { %>
+                        <li>
+                            <p class="question"><%= question.question %></p>
+                            <a href="/delete/question/<%= question.id %>" class="deleteButton">del</a>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </section>
+    
+        
+    </div>
+    
+    
+</body>
+</html>
