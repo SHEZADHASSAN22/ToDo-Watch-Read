@@ -7,7 +7,7 @@ const Todo = require('./models/todoSchema');
 const Question = require('./models/questionSchema');
 const Video = require('./models/videoSchema');
 const Article = require('./models/articleSchema');
-const { Server } = require('http');
+
 
 // Express setup
 const app = express();
@@ -19,7 +19,7 @@ dotenv.config();
 
 //middleware
 app.use(express.urlencoded({extended: false}));
-app.use(express.static(__dirname + 'styles'));
+
 
 // Mongo
 mongoose.connect(process.env.CONNECTIONSTRING, { useUnifiedTopology: true , useNewUrlParser: true })
