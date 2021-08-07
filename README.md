@@ -1,5 +1,3 @@
-**Description**
-
 A simple To-do Website with the ability to not only store 'todos' but also videos to watch and articles to read. 
 
 **Usage**
